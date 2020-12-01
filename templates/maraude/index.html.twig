@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Maraude index{% endblock %}
+
+{% block body %}
+    <h1>Maraude index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>Type</th>
+                <th>Organisme</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>ImageFilename</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for maraude in maraudes %}
+            <tr>
+                <td>{{ maraude.id }}</td>
+                <td>{{ maraude.adresse }}</td>
+                <td>{{ maraude.type }}</td>
+                <td>{{ maraude.organisme }}</td>
+                <td>{{ maraude.nom }}</td>
+                <td>{{ maraude.description }}</td>
+                <td>{{ maraude.imageFilename }}</td>
+                <td>
+                    <a href="{{ path('maraude_show', {'id': maraude.id}) }}">Voir</a>
+                    <a href="{{ path('maraude_edit', {'id': maraude.id}) }}"><i class="fas fa-edit"></i>Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">La liste est vide</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('maraude_new') }}"><i class="fas fa-plus-square">Ajouter</a>
+{% endblock %}
